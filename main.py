@@ -1,11 +1,8 @@
 # import the pygame module, so you can use it
 import pygame
 from pygame.locals import *
-import warnings
 import random
 import numpy as np
-import math
-from scipy.spatial import Delaunay
 
 import delaunaytriangulation as dt
 import graphmodel as gm
@@ -20,7 +17,6 @@ InfoConsole = console.Console()
 
 # define a main function
 def main():
-
 	# define a variable to control the main loop
 	running = True
 
@@ -84,8 +80,8 @@ def main():
 				if event.key == K_c:
 					collision_on = not collision_on
 				if event.key == K_SPACE:
-					apply_forces_on = not apply_forces_on
-					GlobalLog.log("apply_forces_on = {}".format(apply_forces_on))
+					# apply_forces_on = not apply_forces_on
+					GlobalLog.log("This is a logged line and a random number : {:.2f}".format(random.random()))
 				if event.key == K_s:
 					for n in graph.nodes:
 						n.info["pos"] = [random.randint(0, display.graph_surface_size[0]), random.randint(0, display.graph_surface_size[1])]
