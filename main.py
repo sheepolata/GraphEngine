@@ -13,8 +13,10 @@ import drawer
 import ggraph
 import utils
 import graphdisplay as gd
+import console
 
-
+GlobalLog = console.Console(head="Head, ", tail=", tail")
+InfoConsole = console.Console()
 
 # define a main function
 def main():
@@ -23,8 +25,9 @@ def main():
 	running = True
 
 	graph = ggraph.gGraph(node_type=ggraph.gNode)
-	
 	display = gd.GraphDisplay(graph)
+	display.set_log(GlobalLog)
+	display.set_info(InfoConsole)
 
 	nb_node = 30
 	# sparseness = random.randint(nb_node-1, int(nb_node*(nb_node-1)/2.0))
@@ -33,6 +36,13 @@ def main():
 	collision_on = True
 
 	apply_forces_on = True
+
+	def update_info():
+		InfoConsole.clear()
+		InfoConsole.log("Node number: {}".format(len(graph.nodes)))
+		InfoConsole.log("Edge number: {}".format(len(graph.edges)))
+		InfoConsole.log("Random number: {:.3f}".format(random.random()))
+
 
 	def generate():
 		# graph.complete_graph(nb_node)
@@ -46,9 +56,9 @@ def main():
 			# n.info["color"] = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 			n.info["color"] = (0, 0, 0)
 		graph.setDelaunay()
-		print(graph.serialise())
-	generate()
+		# print(graph.serialise())
 
+	generate()
 
 	# print(graph.serialise())
 
@@ -75,6 +85,7 @@ def main():
 					collision_on = not collision_on
 				if event.key == K_SPACE:
 					apply_forces_on = not apply_forces_on
+					GlobalLog.log("apply_forces_on = {}".format(apply_forces_on))
 				if event.key == K_s:
 					for n in graph.nodes:
 						n.info["pos"] = [random.randint(0, display.graph_surface_size[0]), random.randint(0, display.graph_surface_size[1])]
@@ -84,13 +95,14 @@ def main():
 				if event.key == K_d:
 					graph._draw_delaunay = not graph._draw_delaunay
 
-
 		graph.computeDelaunay()
 
 		if apply_forces_on:
 			for n in graph.nodes:
 				n.applyForces(collision=collision_on)
 
+		update_info()
+		InfoConsole.push_front("{:.1f} FPS".format(display.clock.get_fps()))
 		display.main_loop_end()
 
 	 
