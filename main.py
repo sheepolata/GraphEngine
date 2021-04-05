@@ -32,7 +32,7 @@ def main():
 
 	def update_info():
 		InfoConsole.clear()
-		InfoConsole.log("This is the GraphEngine example, welcome!")
+		InfoConsole.log("This is the GraphEngine example, hope you enjoy it!")
 		InfoConsole.log("Node number: {}".format(len(graph.nodes)))
 		InfoConsole.log("Edge number: {}".format(len(graph.edges)))
 		InfoConsole.log("Random number: {:.3f}".format(random.random()))
