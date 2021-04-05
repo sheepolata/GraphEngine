@@ -81,7 +81,8 @@ class GraphDisplay(object):
 		if self.info_console != None:
 			self.display_info_console()
 
-		self.graph.draw(self.graph_surface)
+		if self.graph != None:
+			self.graph.draw(self.graph_surface)
 
 		self.screen.blit(self.graph_surface, self.main_surface_position)
 		self.screen.blit(self.info_surface, self.info_surface_position)
