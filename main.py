@@ -4,11 +4,8 @@ from pygame.locals import *
 import random
 import numpy as np
 
-import delaunaytriangulation as dt
-import graphmodel as gm
 import drawer
 import ggraph
-import utils
 import graphdisplay as gd
 import console
 
@@ -38,6 +35,7 @@ def main():
 		InfoConsole.log("Node number: {}".format(len(graph.nodes)))
 		InfoConsole.log("Edge number: {}".format(len(graph.edges)))
 		InfoConsole.log("Random number: {:.3f}".format(random.random()))
+		InfoConsole.log("Press SPACE to display one log line.")
 
 
 	def generate():
