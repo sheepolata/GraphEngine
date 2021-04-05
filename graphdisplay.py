@@ -3,7 +3,7 @@ import drawer
 
 class GraphDisplay(object):
 
-	def __init__(self, graph, caption="Graph Display", logofile=None, screensize=(1280, 720), graph_surface_width_proportion=0.6, info_surface_height_proportion=0.6, mbgc=(128, 128, 128), ibgc=(64, 64, 64), lbgc=(168, 168, 168)):
+	def __init__(self, graph, caption="Graph Display", logofile=None, fps=60, screensize=(1280, 720), graph_surface_width_proportion=0.6, info_surface_height_proportion=0.6, mbgc=(128, 128, 128), ibgc=(64, 64, 64), lbgc=(168, 168, 168)):
 
 		self.graph = graph
 		self.screensize = screensize
@@ -42,7 +42,7 @@ class GraphDisplay(object):
 		self.info_surface.fill(self.infobg_color)
 		self.log_surface.fill(self.consolebg_color)
 
-		self.fps = 60
+		self.fps = fps
 
 		# Console type
 		self.log = None
@@ -90,4 +90,5 @@ class GraphDisplay(object):
 
 		pygame.display.update()
 
-		self.clock.tick(self.fps)
+		if self.fps > 0:
+			self.clock.tick(self.fps)
