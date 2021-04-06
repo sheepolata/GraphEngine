@@ -31,7 +31,7 @@ class GraphDisplay(object):
 		self.info_surface    = pygame.Surface(self.info_surface_size)
 		self.log_surface     = pygame.Surface(self.log_surface_size)
 
-		self.main_surface_position = (0, 0)
+		self.graph_surface_position = (0, 0)
 		self.info_surface_position = (self.graph_surface_size[0], 0)
 		self.log_surface_position = (self.graph_surface_size[0], self.info_surface_size[1])
 
@@ -90,7 +90,7 @@ class GraphDisplay(object):
 		if self.graph != None:
 			self.graph.draw(self.graph_surface)
 
-		self.screen.blit(self.graph_surface, self.main_surface_position)
+		self.screen.blit(self.graph_surface, self.graph_surface_position)
 		self.screen.blit(self.info_surface, self.info_surface_position)
 		self.screen.blit(self.log_surface, self.log_surface_position)
 
