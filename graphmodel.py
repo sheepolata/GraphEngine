@@ -16,6 +16,8 @@ class Graph(object):
 
         self.triangulation = None
 
+        self.oriented = oriented
+
     def addNode(self, n):
         if not n in self.nodes:
             n.parent = self
