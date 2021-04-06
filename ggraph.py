@@ -245,7 +245,11 @@ class gGraph(gm.Graph):
                 color = n.info["color"]
             except KeyError:
                 color = (255, 255, 255)
-            n.drawNode(surface, color)
+            try:
+                out_color = n.info["outline_color"]
+                n.drawNode(surface, color, outline_color=out_color)
+            except KeyError:
+                n.drawNode(surface, color)
         
         if self._draw_delaunay:
             self.drawDelaunay(surface, (0, 0, 255))
