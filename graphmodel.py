@@ -206,9 +206,9 @@ def run_test():
     n1.addEdge(n3, bidirectionnal=True)
 
     graph = Graph()
-    graph.add_node(n1)
-    graph.add_node(n2)
-    graph.add_node(n3)
+    graph.addNode(n1)
+    graph.addNode(n2)
+    graph.addNode(n3)
 
     print(graph.serialise())
 
