@@ -76,11 +76,25 @@ class GraphDisplay(object):
 		for line in self.info_console.get_lines():
 			shift = drawer.draw_text(line, self.info_font, self.info_font_size, self.info_surface, (255,255,255), shift)
 
-	def main_loop_end(self):
-
+	def fill_surfaces(self):
 		self.graph_surface.fill(self.mainbg_color)
 		self.info_surface.fill(self.infobg_color)
 		self.log_surface.fill(self.consolebg_color)
+
+	def blit_surfaces(self):
+		self.screen.blit(self.graph_surface, self.graph_surface_position)
+		self.screen.blit(self.info_surface, self.info_surface_position)
+		self.screen.blit(self.log_surface, self.log_surface_position)
+
+	def pygame_update_and_tick(self):
+		pygame.display.update()
+
+		if self.fps > 0:
+			self.clock.tick(self.fps)
+
+	def main_loop_end(self):
+
+		self.fill_surfaces()
 
 		if self.log != None:
 			self.display_log_console()
@@ -90,11 +104,7 @@ class GraphDisplay(object):
 		if self.graph != None:
 			self.graph.draw(self.graph_surface)
 
-		self.screen.blit(self.graph_surface, self.graph_surface_position)
-		self.screen.blit(self.info_surface, self.info_surface_position)
-		self.screen.blit(self.log_surface, self.log_surface_position)
+		self.blit_surfaces()
 
-		pygame.display.update()
-
-		if self.fps > 0:
-			self.clock.tick(self.fps)
+		self.pygame_update_and_tick()
+		
