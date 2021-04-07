@@ -27,6 +27,14 @@ class Console(object):
         if len(self.lines) > self.max:
             self.lines = self.lines[:-1]
 
+    def insert(self, s, pos):
+        l = "{}{}{}".format(self.line_head, s, self.line_tail)
+        _pos = utils.clamp(pos, 0, self.max_lines)
+        self.lines.insert(_pos, l)
+        if len(self.lines) > self.max:
+            self.lines = self.lines[:-1]
+
+
     def clear(self):
         del self.lines[:]
 
