@@ -92,10 +92,7 @@ class GraphDisplay(object):
 		if self.fps > 0:
 			self.clock.tick(self.fps)
 
-	def main_loop_end(self):
-
-		self.fill_surfaces()
-
+	def main_loop_logic(self):
 		if self.log != None:
 			self.display_log_console()
 		if self.info_console != None:
@@ -103,6 +100,12 @@ class GraphDisplay(object):
 
 		if self.graph != None:
 			self.graph.draw(self.graph_surface)
+
+	def main_loop_end(self):
+
+		self.fill_surfaces()
+
+		self.main_loop_logic()
 
 		self.blit_surfaces()
 
