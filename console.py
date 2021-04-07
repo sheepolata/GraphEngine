@@ -1,4 +1,5 @@
 import math
+import utils
 
 class Console(object):
     """docstring for Console"""
