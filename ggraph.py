@@ -209,13 +209,13 @@ class gGraph(gm.Graph):
         self.delaunay = None
         self._draw_delaunay = True
 
-    def setDelaunay(self):
+    def setDelaunay(self, dcl=-1):
         dict_pos = {}
         for n in self.nodes:
             dict_pos[n.id] = n.info["pos"]
 
         self.triangulation = dt.Delaunay_Triangulation(dict_pos)
-        self.triangulation.delaunay_cut_links = 150
+        self.triangulation.delaunay_cut_links = dcl
         self.triangulation.update()
 
     def computeDelaunay(self):
