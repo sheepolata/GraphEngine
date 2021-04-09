@@ -51,4 +51,7 @@ class Delaunay_Triangulation(object):
             self.neighbours[str(nodenb)] = neighbours_names
 
     def get_neighbours_of(self, idNode):
-        return self.neighbours[idNode]
+        try:
+            return self.neighbours[idNode]
+        except KeyError:
+            return []
