@@ -163,6 +163,12 @@ class Node(object):
                 return True
         return False
 
+    def getNeighbours(self):
+        n = []
+        for e in self.edges:
+            n.append(e.end)
+        return n
+
     def equal(self, other):
         if self.id == other.id:
             return True
