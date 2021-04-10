@@ -47,7 +47,7 @@ class gNode(gm.Node):
 
         for e in self.edges:
             if e.end == self:
-                pygame.draw.circle(surface, (255, 255, 255), (self.info["pos"][0], self.info["pos"][1]-radius), radius*1.2, width=1)
+                pygame.draw.circle(surface, color, (self.info["pos"][0], self.info["pos"][1]-radius), radius*1.2, width=1)
             else:
                 try:
                     if self.parent.oriented:
@@ -55,9 +55,9 @@ class gNode(gm.Node):
                         mag_v = np.linalg.norm(np.array(v))
                         u = (v[0] / mag_v, v[1] / mag_v)
                         ep = (e.end.info["pos"][0] - radius*1.5*u[0], e.end.info["pos"][1]- radius*1.5*u[1])
-                        drawer.arrow(surface, (255, 255, 255), self.info["pos"], ep)
+                        drawer.arrow(surface, color, self.info["pos"], ep)
                     else:
-                        pygame.draw.line(surface, (255, 255, 255), self.info["pos"], e.end.info["pos"])
+                        pygame.draw.line(surface, color, self.info["pos"], e.end.info["pos"])
                 except KeyError:
                     warnings.warn("{} does not possess a position information (info[\"pos\"])".format(e.end.id), stacklevel=2)
 
