@@ -18,7 +18,7 @@ class gNode(gm.Node):
         self.drawNode(surface, color)
         self.drawEdges(surface, color)
 
-    def drawNode(self, surface, color, outline_color=(255, 255, 255)):
+    def drawNode(self, surface, color, outline_color=(255, 255, 255), outline_width=2):
         try:
             self.info["pos"]
         except KeyError:
@@ -31,9 +31,9 @@ class gNode(gm.Node):
             radius = 8
 
         pygame.draw.circle(surface, color, self.info["pos"], radius)
-        pygame.draw.circle(surface, outline_color, self.info["pos"], radius, width=2)
+        pygame.draw.circle(surface, outline_color, self.info["pos"], radius+outline_width, width=outline_width)
 
-    def drawEdges(self, surface, color):
+    def drawEdges(self, surface, color, width=1):
         try:
             self.info["pos"]
         except KeyError:
@@ -47,7 +47,7 @@ class gNode(gm.Node):
 
         for e in self.edges:
             if e.end == self:
-                pygame.draw.circle(surface, color, (self.info["pos"][0], self.info["pos"][1]-radius), radius*1.2, width=1)
+                pygame.draw.circle(surface, color, (self.info["pos"][0], self.info["pos"][1]-radius), radius*1.2, width=width)
             else:
                 try:
                     if self.parent.oriented:
