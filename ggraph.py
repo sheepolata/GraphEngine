@@ -57,7 +57,7 @@ class gNode(gm.Node):
                         ep = (e.end.info["pos"][0] - radius*1.5*u[0], e.end.info["pos"][1]- radius*1.5*u[1])
                         drawer.arrow(surface, color, self.info["pos"], ep)
                     else:
-                        pygame.draw.line(surface, color, self.info["pos"], e.end.info["pos"])
+                        pygame.draw.line(surface, color, self.info["pos"], e.end.info["pos"], width=width)
                 except KeyError:
                     warnings.warn("{} does not possess a position information (info[\"pos\"])".format(e.end.id), stacklevel=2)
 
