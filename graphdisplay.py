@@ -56,9 +56,9 @@ class GraphDisplay(object):
 
 	def set_info(self, info_console, force_max=False):
 		self.info_console = info_console
+		self.info_font_size = 12
+		self.info_font = pygame.font.SysFont('Sans', self.info_font_size)
 		if not force_max:
-			self.info_font_size = 12
-			self.info_font = pygame.font.SysFont('Sans', self.info_font_size)
 			self.info_console.max = int((self.info_surface_size[1] / self.info_font_size) / 1.2)
 
 	def clear_log(self):
